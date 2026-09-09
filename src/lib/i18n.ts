@@ -19,12 +19,12 @@ export function getLocalizedPath(pathname: string, targetLocale: Locale): string
   const currentLocale = getLocaleFromPath(pathname);
   if (currentLocale === targetLocale) return pathname;
 
-  if (currentLocale === 'en') {
-    return pathname === '/' ? `/${targetLocale}/` : `/${targetLocale}${pathname}`;
+  if (targetLocale === 'en') {
+    return pathname.replace(/^\/es/, '') || '/';
   }
 
   const withoutLocale = pathname.replace(/^\/es/, '') || '/';
-  return targetLocale === 'en' ? withoutLocale : `/${targetLocale}${withoutLocale}`;
+  return `/${targetLocale}${withoutLocale}`;
 }
 
 export const locales: Locale[] = ['en', 'es'];

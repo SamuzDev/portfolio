@@ -38,10 +38,11 @@ export default function AnimatedHeader({ locale, navAbout, navWorks, navContact 
     return () => observer.disconnect();
   }, []);
 
+  const localePrefix = locale === 'en' ? '' : `/${locale}`;
   const navItems = [
-    { label: navAbout, href: `/${locale}/#about`, sectionId: 'about' },
-    { label: navWorks, href: `/${locale}/#works`, sectionId: 'works' },
-    { label: navContact, href: `/${locale}/#contact`, sectionId: 'contact' },
+    { label: navAbout, href: `${localePrefix}/#about`, sectionId: 'about' },
+    { label: navWorks, href: `${localePrefix}/#works`, sectionId: 'works' },
+    { label: navContact, href: `${localePrefix}/#contact`, sectionId: 'contact' },
   ];
 
   return (
@@ -74,7 +75,7 @@ export default function AnimatedHeader({ locale, navAbout, navWorks, navContact 
           }}
         >
           <a
-            href={`/${locale}/`}
+            href={locale === 'en' ? '/' : `/${locale}/`}
             className="logo-wordmark"
             style={{ textDecoration: 'none', color: colors.fg }}
           >
@@ -98,7 +99,7 @@ export default function AnimatedHeader({ locale, navAbout, navWorks, navContact 
             </nav>
 
             <a
-              href={`/${otherLocale}/`}
+                href={otherLocale === 'en' ? '/' : `/${otherLocale}/`}
               style={{
                 fontSize: '0.6875rem',
                 fontWeight: 600,
@@ -202,7 +203,7 @@ export default function AnimatedHeader({ locale, navAbout, navWorks, navContact 
 
             <div style={{ marginTop: 'auto', paddingTop: '1.5rem', borderTop: `1px solid ${colors.border}` }}>
               <a
-                href={`/${otherLocale}/`}
+              href={otherLocale === 'en' ? '/' : `/${otherLocale}/`}
                 style={{
                   fontSize: '0.8125rem',
                   fontWeight: 600,

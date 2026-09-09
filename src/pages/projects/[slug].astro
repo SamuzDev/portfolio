@@ -19,7 +19,7 @@ if (!project) {
 
 const title = `${project.title} — John Doe`;
 const description = project.description;
-const canonical = `https://johndoe.com/en/projects/${project.slug}/`;
+const canonical = `https://johndoe.com/projects/${project.slug}/`;
 ---
 <BaseLayout title={title} description={description} locale="en" canonical={canonical}>
   <ProjectDetail project={project} locale="en" />
