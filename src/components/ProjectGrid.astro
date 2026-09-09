@@ -1,0 +1,25 @@
+---
+import ProjectCard from './ProjectCard.astro';
+import type { Project } from '@/lib/projects';
+import { getTranslations, type Locale } from '@/lib/i18n';
+
+interface Props {
+  projects: Project[];
+  locale: Locale;
+  title?: string;
+}
+const { projects, locale, title } = Astro.props;
+const t = getTranslations(locale);
+---
+<section aria-labelledby="projects-heading">
+  {title && (
+    <header class="mb-12">
+      <h2 id="projects-heading" class="section-title">{title}</h2>
+    </header>
+  )}
+  <div class="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
+    {projects.map(project => (
+      <ProjectCard project={project} locale={locale} />
+    ))}
+  </div>
+</section>

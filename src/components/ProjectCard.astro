@@ -1,0 +1,30 @@
+---
+import { getTranslations, type Locale } from '@/lib/i18n';
+import type { Project } from '@/lib/projects';
+
+interface Props {
+  project: Project;
+  locale: Locale;
+}
+const { project, locale } = Astro.props;
+const t = getTranslations(locale);
+---
+<article class="card group">
+  <a href={`/${locale}/projects/${project.slug}`} class="block" aria-label={`${t.works.viewProject}: ${project.title}`}>
+    <div class="relative overflow-hidden">
+      <img
+        src={project.cover}
+        alt=""
+        class="card-image aspect-4-3"
+        loading="lazy"
+        width="800"
+        height="600"
+      />
+    </div>
+    <div class="card-content">
+      <div class="card-number">{project.number}</div>
+      <h3 class="card-title">{project.title}</h3>
+      <p class="card-category">{project.category}</p>
+    </div>
+  </a>
+</article>

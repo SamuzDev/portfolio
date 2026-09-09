@@ -1,0 +1,51 @@
+{
+  "nav": {
+    "about": "Sobre mí",
+    "works": "Trabajos",
+    "contact": "Contacto"
+  },
+  "hero": {
+    "label": "DISEÑADOR UI/UX & DESARROLLADOR FRONT END",
+    "subtitle": "diseñador creativo & desarrollador",
+    "cta": "VER MIS TRABAJOS",
+    "scroll": "DESCUBRE MÁS"
+  },
+  "works": {
+    "title": "Mis Trabajos",
+    "viewProject": "VER PROYECTO",
+    "githubTitle": "Proyectos en GitHub"
+  },
+  "project": {
+    "about": "Sobre el proyecto",
+    "platform": "Plataforma",
+    "category": "Categoría",
+    "designer": "Diseñador",
+    "tools": "Herramientas usadas",
+    "viewBehance": "VER EN BEHANCE"
+  },
+  "about": {
+    "storyTitle": "Historia",
+    "storyText": "¡Hola! Soy un apasionado Desarrollador Front-end y Diseñador UI/UX basado en San Francisco. Tengo una gran pasión por el diseño y la tecnología. Me especializo en Desarrollo Front End y Diseño UI/UX y mi pasión consiste en construir interfaces de usuario y sitios web elegantes y profesionales. También hago diseño de branding e identidad como diseño de logotipos, papelería y tarjetas de visita, junto con edición de fotos, recorte de imágenes y otros servicios de diseño gráfico.",
+    "storyDetail": "Vivo en San Francisco, California. Soy graduado en Tecnología de la Información. Empecé a dibujar y diseñar desde muy joven y la mayoría de mis habilidades y conocimientos de diseño son autodidactas. Me metí en la programación cuando me introdujeron a la programación web durante el instituto. Me fascinó y me enganchó, así que decidí seguir esta carrera. Aunque tomé el camino de convertirme en programador, mi fuerte e innato talento en artes y diseño persistió. Consecuentemente, me enseñé a mí mismo sobre diseño multimedia. Combinando el estado del arte y mis conocimientos de programación, puedo construir sitios web profesionales e interactivos.",
+    "processTitle": "El Proceso",
+    "processText": "Cuando empiezo a trabajar en un proyecto, intento obtener toda la información y datos de mi cliente que sean relevantes para el proyecto, como objetivos, demografía y estética preferida. Después de esto, empiezo a investigar sobre la industria, la competencia, las tendencias y otros factores necesarios para el desarrollo del proyecto. Una vez que tengo todos los datos que necesito, mi siguiente paso es trabajar en el wireframe y el prototipo usando herramientas como Figma y Adobe XD. Después de que el prototipo está terminado y los wireframes están finalizados y aprobados, es donde empiezo a hacer los diseños visuales usando varias herramientas como Adobe Photoshop para procesar imágenes, Adobe Illustrator para crear gráficos vectoriales, y Adobe XD para construir el diseño visual real. Después de que los diseños visuales son aprobados, empiezo a codificar y transformar los diseños en código real usando una amplia gama de tecnologías como HTML, CSS y JavaScript con las mejores prácticas en mente.",
+    "toolsTitle": "Las Herramientas",
+    "toolsDesign": "Diseño Creativo",
+    "toolsDev": "Desarrollo Web",
+    "contactTitle": "Contacto"
+  },
+  "contact": {
+    "available": "Estoy disponible para trabajo freelance.",
+    "hello": "HABLEMOS",
+    "email": "john@gmail.com"
+  },
+  "footer": {
+    "copyright": "© {year} John Doe",
+    "top": "ARRIBA"
+  },
+  "common": {
+    "loading": "Cargando...",
+    "error": "Algo salió mal",
+    "back": "Volver"
+  }
+}

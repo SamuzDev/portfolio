@@ -1,0 +1,101 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import { getProjectBySlug, getAllProjectSlugs } from '@/lib/projects';
+import { getTranslations } from '@/lib/i18n';
+
+export async function getStaticPaths() {
+  const slugs = getAllProjectSlugs();
+  return slugs.map(slug => ({ params: { slug } }));
+}
+
+const { slug } = Astro.params;
+const project = getProjectBySlug(slug as string);
+const t = getTranslations('es');
+
+if (!project) {
+  throw new Error(`Project not found: ${slug}`);
+}
+
+const title = `${project.title} — John Doe`;
+const description = project.description;
+const canonical = `https://johndoe.com/es/projects/${project.slug}/`;
+---
+<BaseLayout title={title} description={description} locale="es" canonical={canonical}>
+  <div class="container">
+    <header class="mb-12">
+      <div class="flex items-baseline gap-3 mb-4">
+        <span class="text-[var(--color-fg-subtle)] font-mono text-sm">{project.number}</span>
+        <h1 class="text-balance">{project.title}</h1>
+      </div>
+      <p class="text-[var(--color-fg-muted)] text-lg">{project.category}</p>
+    </header>
+
+    <div class="grid lg:grid-cols-4 gap-12">
+      <div class="lg:col-span-3 space-y-12">
+        <figure class="relative aspect-[16/10] overflow-hidden rounded-[var(--radius)]">
+          <img src={project.cover} alt="" class="w-full h-full object-cover" width="1200" height="750" />
+        </figure>
+
+        <div class="prose prose-invert max-w-none">
+          <h3 class="text-xl font-semibold mb-4">{t.project.about}</h3>
+          <p class="text-[var(--color-fg-muted)] leading-relaxed">{project.description}</p>
+        </div>
+
+        {project.images.length > 1 && (
+          <div class="grid gap-6 md:grid-cols-2">
+            {project.images.slice(1).map((img, i) => (
+              <figure key={i} class="relative aspect-[4/3] overflow-hidden rounded-[var(--radius)]">
+                <img src={img} alt="" class="w-full h-full object-cover" width="800" height="600" />
+              </figure>
+            ))}
+          </div>
+        )}
+      </div>
+
+      <aside class="lg:col-span-1">
+        <div class="sticky top-24 space-y-8">
+          <div class="card p-6">
+            <h4 class="font-semibold mb-6 pb-4 border-b border-[var(--color-border)]">{t.project.about}</h4>
+            <dl class="space-y-6">
+              <div>
+                <dt class="text-[var(--color-fg-subtle)] text-xs uppercase tracking-wide mb-1">{t.project.platform}</dt>
+                <dd class="text-[var(--color-fg)]">{project.metadata.platform}</dd>
+              </div>
+              <div>
+                <dt class="text-[var(--color-fg-subtle)] text-xs uppercase tracking-wide mb-1">{t.project.category}</dt>
+                <dd class="text-[var(--color-fg)]">{project.metadata.category}</dd>
+              </div>
+              <div>
+                <dt class="text-[var(--color-fg-subtle)] text-xs uppercase tracking-wide mb-1">{t.project.designer}</dt>
+                <dd class="text-[var(--color-fg)]">{project.metadata.designer}</dd>
+              </div>
+              <div>
+                <dt class="text-[var(--color-fg-subtle)] text-xs uppercase tracking-wide mb-1">{t.project.tools}</dt>
+                <dd>
+                  <div class="flex flex-wrap gap-2 mt-1">
+                    {project.metadata.tools.map(tool => (
+                      <span key={tool} class="px-3 py-1 text-xs font-medium border border-[var(--color-border)] rounded-[var(--radius)] text-[var(--color-fg-muted)] hover:border-[var(--color-fg)] hover:text-[var(--color-fg)] transition-colors">{tool}</span>
+                    ))}
+                  </div>
+                </dd>
+              </div>
+            </dl>
+          </div>
+
+          <div class="flex flex-col gap-3">
+            {project.behanceUrl && (
+              <a href={project.behanceUrl} target="_blank" rel="noopener noreferrer" class="btn w-full">
+                {t.project.viewBehance}
+              </a>
+            )}
+            {project.githubUrl && (
+              <a href={project.githubUrl} target="_blank" rel="noopener noreferrer" class="btn btn-ghost w-full">
+                Ver Código
+              </a>
+            )}
+          </div>
+        </div>
+      </aside>
+    </div>
+  </div>
+</BaseLayout>

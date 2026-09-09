@@ -1,0 +1,44 @@
+---
+import LanguageSwitcher from './LanguageSwitcher.astro';
+import MobileMenu from './MobileMenu.astro';
+import { getTranslations, type Locale } from '@/lib/i18n';
+
+interface Props {
+  locale: Locale;
+}
+const { locale } = Astro.props;
+const t = getTranslations(locale);
+---
+<header class="fixed top-0 left-0 right-0 z-50 bg-[var(--color-bg)]/95 backdrop-blur supports-[backdrop-filter]:bg-[var(--color-bg)]/80">
+  <div class="container">
+    <div class="flex items-center justify-between h-16">
+      <a href={`/${locale}/`} class="font-display font-semibold text-lg tracking-tight" aria-label="Home">
+        John Doe
+      </a>
+
+      <nav class="hidden md:flex items-center gap-8" role="navigation" aria-label="Main navigation">
+        <a href={`/${locale}/about`} class="text-sm font-medium hover:opacity-60 transition-opacity">{t.nav.about}</a>
+        <a href={`/${locale}/works`} class="text-sm font-medium hover:opacity-60 transition-opacity">{t.nav.works}</a>
+        <a href={`/${locale}/contact`} class="text-sm font-medium hover:opacity-60 transition-opacity">{t.nav.contact}</a>
+      </nav>
+
+      <div class="flex items-center gap-4">
+        <LanguageSwitcher />
+        <button id="mobile-menu-btn" class="mobile-menu-btn md:hidden" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-menu">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="3" y1="6" x2="21" y2="6"></line>
+            <line x1="3" y1="12" x2="21" y2="12"></line>
+            <line x1="3" y1="18" x2="21" y2="18"></line>
+          </svg>
+        </button>
+      </div>
+    </div>
+  </div>
+  <MobileMenu locale={locale} />
+</header>
+
+<style>
+  header {
+    transition: background-color var(--transition), border-color var(--transition);
+  }
+</style>

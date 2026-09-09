@@ -1,0 +1,66 @@
+---
+import { getTranslations, type Locale } from '@/lib/i18n';
+
+interface Props {
+  locale: Locale;
+  name: string;
+  subtitle: string;
+  summary: string;
+  email: string;
+}
+const { locale, name, subtitle, summary, email } = Astro.props;
+const t = getTranslations(locale);
+---
+<section id="top" class="hero">
+  <div class="container">
+    <div class="hero-content">
+      <!-- Left Content -->
+      <div class="hero-text animate-on-scroll fade-in">
+        <p class="hero-label">{t.hero.label}</p>
+        <h1 class="hero-title">
+          <span>{t.hero.subtitle.split('&')[0].trim()}</span>
+          <br />
+          <span class="accent">& {t.hero.subtitle.split('&')[1]?.trim() || 'developer.'}</span>
+        </h1>
+        <p class="hero-bio">
+          Hi I'm {name}. A passionate UI/UX Designer and Front End Developer based in the Philippines.
+        </p>
+        <div class="hero-actions">
+          <a href={`/${locale}/#works`} class="btn btn-primary">
+            {t.hero.cta}
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M5 12h14"></path>
+              <path d="m12 5 7 7-7 7"></path>
+            </svg>
+          </a>
+        </div>
+        <div class="hero-social">
+          <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" class="link-list__item">LinkedIn</a>
+          <span class="divider">/</span>
+          <a href="https://github.com" target="_blank" rel="noopener noreferrer" class="link-list__item">GitHub</a>
+        </div>
+      </div>
+
+      <!-- Right Visual -->
+      <div class="hero-visual animate-on-scroll slide-up delay-2">
+        <div class="visual-circle parallax-element" data-parallax="0.15">
+          <img
+            src="/images/haimiya-senpai.jpg"
+            alt="Julius Guevarra"
+            loading="lazy"
+          />
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Scroll Indicator -->
+  <div class="scroll-indicator no-print" aria-hidden="true">
+    <span class="scroll-text">{t.hero.scroll}</span>
+    <div class="scroll-bounce">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <polyline points="6 9 12 15 18 9"></polyline>
+      </svg>
+    </div>
+  </div>
+</section>

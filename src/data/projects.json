@@ -1,0 +1,177 @@
+{
+  "projects": [
+    {
+      "slug": "booz-player",
+      "number": "01",
+      "title": "booz player",
+      "category": "UI / UX",
+      "cover": "/images/booz-cover.webp",
+      "images": [
+        "/images/booz-1.webp",
+        "/images/booz-2.webp",
+        "/images/booz-3.webp",
+        "/images/booz-4.webp",
+        "/images/booz-5.webp"
+      ],
+      "metadata": {
+        "platform": "iOS",
+        "category": "Entertainment",
+        "designer": "John Doe",
+        "tools": ["Figma", "Adobe XD", "Adobe Photoshop", "Adobe Illustrator", "Adobe After Effects"]
+      },
+      "description": "Booz is a simple but elegant iOS music player that puts very little between you and your music. It has an equalizer and widgets. It's delightfully simple and a fantastic option for fans of minimalism. This is a personal project only.",
+      "behanceUrl": "https://www.behance.net/gallery/67551631/BOOZ-iOS-Music-Player-App",
+      "githubUrl": null
+    },
+    {
+      "slug": "movx-movie-browser",
+      "number": "02",
+      "title": "movx movie browser",
+      "category": "WEB APP",
+      "cover": "/images/movx-cover.webp",
+      "images": [
+        "/images/movx-1.webp",
+        "/images/movx-2.webp",
+        "/images/movx-3.webp",
+        "/images/movx-4.webp"
+      ],
+      "metadata": {
+        "platform": "Web",
+        "category": "Entertainment",
+        "designer": "John Doe",
+        "tools": ["React", "TypeScript", "Tailwind CSS", "TMDB API", "Vercel"]
+      },
+      "description": "A modern movie browser web application built with React and TypeScript. Features movie search, trending movies, detailed movie information with cast and crew, and a clean responsive design.",
+      "behanceUrl": null,
+      "githubUrl": "https://github.com/johndoe/movx"
+    },
+    {
+      "slug": "salinaka-ecommerce",
+      "number": "03",
+      "title": "salinaka-ecommerce",
+      "category": "WEB APP",
+      "cover": "/images/salinaka-cover.webp",
+      "images": [
+        "/images/salinaka-1.webp",
+        "/images/salinaka-2.webp",
+        "/images/salinaka-3.webp"
+      ],
+      "metadata": {
+        "platform": "Web",
+        "category": "E-commerce",
+        "designer": "John Doe",
+        "tools": ["React", "Redux", "Firebase", "Stripe", "Tailwind CSS"]
+      },
+      "description": "A full-featured e-commerce platform with product catalog, shopping cart, user authentication, payment integration with Stripe, and admin dashboard for inventory management.",
+      "behanceUrl": null,
+      "githubUrl": "https://github.com/johndoe/salinaka-ecommerce"
+    },
+    {
+      "slug": "identity-design",
+      "number": "04",
+      "title": "identity design",
+      "category": "GRAPHIC DESIGN",
+      "cover": "/images/identity-cover.webp",
+      "images": [
+        "/images/identity-1.webp",
+        "/images/identity-2.webp",
+        "/images/identity-3.webp",
+        "/images/identity-4.webp"
+      ],
+      "metadata": {
+        "platform": "Print / Digital",
+        "category": "Branding",
+        "designer": "John Doe",
+        "tools": ["Adobe Illustrator", "Adobe Photoshop", "Adobe InDesign", "Figma"]
+      },
+      "description": "Complete brand identity design including logo system, color palette, typography, stationery, brand guidelines, and application examples for a modern tech startup.",
+      "behanceUrl": "https://www.behance.net/gallery/identity-design",
+      "githubUrl": null
+    },
+    {
+      "slug": "zenyoga",
+      "number": "05",
+      "title": "zenyoga",
+      "category": "WEB DESIGN",
+      "cover": "/images/zenyoga-cover.webp",
+      "images": [
+        "/images/zenyoga-1.webp",
+        "/images/zenyoga-2.webp",
+        "/images/zenyoga-3.webp"
+      ],
+      "metadata": {
+        "platform": "Web",
+        "category": "Health & Wellness",
+        "designer": "John Doe",
+        "tools": ["Figma", "React", "Framer Motion", "Tailwind CSS"]
+      },
+      "description": "A serene yoga and wellness platform with class scheduling, instructor profiles, video streaming, and a calming visual design that reflects the brand's philosophy.",
+      "behanceUrl": null,
+      "githubUrl": "https://github.com/johndoe/zenyoga"
+    },
+    {
+      "slug": "word-beater",
+      "number": "06",
+      "title": "word beater",
+      "category": "WEB APP",
+      "cover": "/images/beater-cover.webp",
+      "images": [
+        "/images/beater-1.webp",
+        "/images/beater-2.webp"
+      ],
+      "metadata": {
+        "platform": "Web",
+        "category": "Game",
+        "designer": "John Doe",
+        "tools": ["React", "TypeScript", "CSS Animations", "LocalStorage"]
+      },
+      "description": "An addictive word puzzle game where players beat the clock to form words from random letters. Features multiple difficulty levels, daily challenges, and leaderboards.",
+      "behanceUrl": null,
+      "githubUrl": "https://github.com/johndoe/word-beater"
+    }
+  ],
+  "githubProjects": [
+    {
+      "number": "01",
+      "title": "random quote generator",
+      "description": "React app that fetches and displays random quotes",
+      "githubUrl": "https://github.com/johndoe/react-random-quote",
+      "demoUrl": "https://johndoe.github.io/react-random-quote"
+    },
+    {
+      "number": "02",
+      "title": "github user api",
+      "description": "Search GitHub users and view their profiles",
+      "githubUrl": "https://github.com/johndoe/react-github-api",
+      "demoUrl": "https://johndoe.github.io/react-github-api"
+    },
+    {
+      "number": "03",
+      "title": "simple node chat application",
+      "description": "Real-time chat with Socket.io and Node.js",
+      "githubUrl": "https://github.com/johndoe/node-chat-app",
+      "demoUrl": "https://chat-app.example.com"
+    },
+    {
+      "number": "04",
+      "title": "react todo-list app",
+      "description": "Full-featured todo app with localStorage persistence",
+      "githubUrl": "https://github.com/johndoe/react-todolist-app",
+      "demoUrl": "https://todolistko.netlify.app"
+    },
+    {
+      "number": "05",
+      "title": "react calculator app",
+      "description": "Clean calculator with keyboard support",
+      "githubUrl": "https://github.com/johndoe/react-calculator",
+      "demoUrl": "https://kalkuleytor.netlify.app"
+    },
+    {
+      "number": "06",
+      "title": "expense management app",
+      "description": "Track expenses with categories and charts",
+      "githubUrl": "https://github.com/johndoe/expensify-app",
+      "demoUrl": "https://expensify-crud.netlify.app"
+    }
+  ]
+}

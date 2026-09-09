@@ -1,0 +1,57 @@
+---
+import '../styles/global.css';
+import Footer from '@/components/Footer.astro';
+import IntroAnimation from '@/components/react/IntroAnimation';
+import AnimatedHeader from '@/components/react/AnimatedHeader';
+import { getTranslations, type Locale } from '@/lib/i18n';
+import scrollAnimations from '@/scripts/scroll-animations.js?raw';
+
+interface Props {
+  title: string;
+  description: string;
+  locale: Locale;
+  canonical?: string;
+}
+const { title, description, locale, canonical } = Astro.props;
+const t = getTranslations(locale);
+const siteUrl = canonical || `https://johndoe.com/${locale}/`;
+const name = 'John Doe';
+---
+<!doctype html>
+<html lang={locale}>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={siteUrl} />
+    <link rel="alternate" hreflang="en" href={siteUrl.replace('/es/', '/en/')} />
+    <link rel="alternate" hreflang="es" href={siteUrl.replace('/en/', '/es/')} />
+    <link rel="alternate" hreflang="x-default" href={siteUrl.replace('/es/', '/en/')} />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={siteUrl} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="alternate icon" href="/favicon.ico" />
+  </head>
+  <body>
+    <IntroAnimation client:load name={name} />
+    <AnimatedHeader
+      client:load
+      locale={locale}
+      navAbout={t.nav.about}
+      navWorks={t.nav.works}
+      navContact={t.nav.contact}
+    />
+    <main id="main-content"><slot /></main>
+    <Footer locale={locale} />
+    <script is:inline set:html={scrollAnimations} />
+  </body>
+</html>

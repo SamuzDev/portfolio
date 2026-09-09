@@ -1,0 +1,15 @@
+---
+import { getTranslations, type Locale } from '@/lib/i18n';
+
+interface Props {
+  locale: Locale;
+}
+const { locale } = Astro.props;
+const t = getTranslations(locale);
+---
+<div class="scroll-indicator no-print" aria-hidden="true">
+  <span>{t.hero.scroll}</span>
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <polyline points="6 9 12 15 18 9"></polyline>
+  </svg>
+</div>

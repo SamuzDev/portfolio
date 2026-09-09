@@ -1,0 +1,51 @@
+{
+  "nav": {
+    "about": "About",
+    "works": "Works",
+    "contact": "Contact"
+  },
+  "hero": {
+    "label": "UI/UX DESIGNER & FRONT END DEVELOPER",
+    "subtitle": "creative designer & developer",
+    "cta": "SEE MY WORKS",
+    "scroll": "SCROLL DOWN"
+  },
+  "works": {
+    "title": "My Works",
+    "viewProject": "VIEW PROJECT",
+    "githubTitle": "GitHub Projects"
+  },
+  "project": {
+    "about": "About the project",
+    "platform": "Platform",
+    "category": "Category",
+    "designer": "Designer",
+    "tools": "Tools Used",
+    "viewBehance": "VIEW IN BEHANCE"
+  },
+  "about": {
+    "storyTitle": "Story",
+    "storyText": "Hi! I'm a passionate Front-end Developer & UI/UX Designer based in San Francisco. I have a strong passion for design and technology. I specialize in Front End Development and UI/UX Design and my passion is all about building elegant and professional user interfaces and websites. I also do branding and identity design such as logo design, letterhead and business card, along with photo editing, image cropping and other graphic design services.",
+    "storyDetail": "I live in San Francisco, California. I am a graduate of Information Technology. I started drawing and designing from a young age and most of my design skills and knowledge are self-taught. I got into programming when I was introduced to web programming during high school. It fascinated me and it hooked me on, so I decided to pursue this career. Even though I took the path of becoming a programmer, my strong and innate talent in arts and design persisted. Consequently, I taught myself about multimedia design. Combining the state of the art and my programming knowledge, I am able to build a professional and interactive websites.",
+    "processTitle": "The Process",
+    "processText": "When I start working on a project, I try to get all the information and data from my client that are relevant to the project such as goals, demographics and preferred aesthetics. After this, I start doing the research about the industry, competition, trends and other factors that are necessary for the development of the project. After I have all the data that I need, my next step is to work on the wireframe and prototype using tools such as Figma and Adobe XD. After the prototype is finished and the wireframes are finalized and approved, this is where I start doing the visual designs using various tools such as Adobe Photoshop for processing images, Adobe Illustrator for creating vector graphics, and Adobe XD for building the actual visual design. After the visual designs are approved, I start on coding and transforming the designs into actual code using a wide range of technologies such as HTML, CSS and JavaScript with best practices in mind.",
+    "toolsTitle": "The Tools",
+    "toolsDesign": "Creative Design",
+    "toolsDev": "Web Development",
+    "contactTitle": "Contact"
+  },
+  "contact": {
+    "available": "I'm available for freelance work.",
+    "hello": "SAY HELLO",
+    "email": "john@gmail.com"
+  },
+  "footer": {
+    "copyright": "© {year} John Doe",
+    "top": "TOP"
+  },
+  "common": {
+    "loading": "Loading...",
+    "error": "Something went wrong",
+    "back": "Back"
+  }
+}

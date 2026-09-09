@@ -1,0 +1,88 @@
+---
+import { getTranslations, type Locale } from '@/lib/i18n';
+import type { Project } from '@/lib/projects';
+
+interface Props {
+  project: Project;
+  locale: Locale;
+}
+const { project, locale } = Astro.props;
+const t = getTranslations(locale);
+---
+<article class="container">
+  <header class="mb-12">
+    <div class="flex items-baseline gap-3 mb-4">
+      <span class="text-[var(--color-fg-subtle)] font-mono text-sm">{project.number}</span>
+      <h1 class="text-balance">{project.title}</h1>
+    </div>
+    <p class="text-[var(--color-fg-muted)] text-lg">{project.category}</p>
+  </header>
+
+  <div class="grid lg:grid-cols-4 gap-12">
+    <div class="lg:col-span-3 space-y-12">
+      <figure class="relative aspect-[16/10] overflow-hidden rounded-[var(--radius)]">
+        <img src={project.cover} alt="" class="w-full h-full object-cover" width="1200" height="750" />
+      </figure>
+
+      <div class="prose prose-invert max-w-none">
+        <h3 class="text-xl font-semibold mb-4">{t.project.about}</h3>
+        <p class="text-[var(--color-fg-muted)] leading-relaxed">{project.description}</p>
+      </div>
+
+      {project.images.length > 1 && (
+        <div class="grid gap-6 md:grid-cols-2">
+          {project.images.slice(1).map((img, i) => (
+            <figure key={i} class="relative aspect-[4/3] overflow-hidden rounded-[var(--radius)]">
+              <img src={img} alt="" class="w-full h-full object-cover" width="800" height="600" />
+            </figure>
+          ))}
+        </div>
+      )}
+    </div>
+
+    <aside class="lg:col-span-1">
+      <div class="sticky top-24 space-y-8">
+        <div class="card p-6 project-meta">
+          <h4 class="font-semibold mb-6 pb-4 border-b border-[var(--color-border)]">{t.project.about}</h4>
+          <dl class="space-y-6">
+            <div class="meta-item">
+              <dt class="meta-label">{t.project.platform}</dt>
+              <dd class="meta-value">{project.metadata.platform}</dd>
+            </div>
+            <div class="meta-item">
+              <dt class="meta-label">{t.project.category}</dt>
+              <dd class="meta-value">{project.metadata.category}</dd>
+            </div>
+            <div class="meta-item">
+              <dt class="meta-label">{t.project.designer}</dt>
+              <dd class="meta-value">{project.metadata.designer}</dd>
+            </div>
+            <div class="meta-item">
+              <dt class="meta-label">{t.project.tools}</dt>
+              <dd class="meta-value">
+                <div class="meta-tags">
+                  {project.metadata.tools.map(tool => (
+                    <span key={tool} class="tag">{tool}</span>
+                  ))}
+                </div>
+              </dd>
+            </div>
+          </dl>
+        </div>
+
+        <div class="flex flex-col gap-3">
+          {project.behanceUrl && (
+            <a href={project.behanceUrl} target="_blank" rel="noopener noreferrer" class="btn w-full">
+              {t.project.viewBehance}
+            </a>
+          )}
+          {project.githubUrl && (
+            <a href={project.githubUrl} target="_blank" rel="noopener noreferrer" class="btn btn-ghost w-full">
+              View Source
+            </a>
+          )}
+        </div>
+      </div>
+    </aside>
+  </div>
+</article>
