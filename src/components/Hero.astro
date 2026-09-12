@@ -1,66 +1,138 @@
 ---
-import { getTranslations, type Locale } from '@/lib/i18n';
+import HiganbanaThree from '@/components/HiganbanaThree.astro';
 
 interface Props {
-  locale: Locale;
   name: string;
   subtitle: string;
   summary: string;
   email: string;
 }
-const { locale, name, subtitle, summary, email } = Astro.props;
-const t = getTranslations(locale);
+const { name, subtitle, summary, email } = Astro.props;
 ---
 <section id="top" class="hero">
   <div class="container">
-    <div class="hero-content">
-      <!-- Left Content -->
-      <div class="hero-text animate-on-scroll fade-in">
-        <p class="hero-label">{t.hero.label}</p>
-        <h1 class="hero-title">
-          <span>{t.hero.subtitle.split('&')[0].trim()}</span>
+    <div class="hero-grid">
+      <div class="hero-text">
+        <p class="hero-label animate-entrance">Portfolio</p>
+
+        <h1 class="hero-title animate-entrance animate-entrance-delay-1">
+          <span>{name}</span>
           <br />
-          <span class="accent">& {t.hero.subtitle.split('&')[1]?.trim() || 'developer.'}</span>
+          <span class="hero-title-accent">{subtitle}</span>
         </h1>
-        <p class="hero-bio">
-          Hi I'm {name}. A passionate UI/UX Designer and Front End Developer based in the Philippines.
-        </p>
-        <div class="hero-actions">
-          <a href={locale === 'en' ? '/#works' : `/es/#works`} class="btn btn-primary">
-            {t.hero.cta}
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M5 12h14"></path>
-              <path d="m12 5 7 7-7 7"></path>
-            </svg>
-          </a>
-        </div>
-        <div class="hero-social">
-          <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" class="link-list__item">LinkedIn</a>
-          <span class="divider">/</span>
-          <a href="https://github.com" target="_blank" rel="noopener noreferrer" class="link-list__item">GitHub</a>
+
+        <p class="hero-bio animate-entrance animate-entrance-delay-2">{summary}</p>
+
+        <div class="hero-actions animate-entrance animate-entrance-delay-3">
+          <a href="#works" class="btn">View Work</a>
+          <a href={`mailto:${email}`} class="btn btn-secondary">Contact</a>
         </div>
       </div>
 
-      <!-- Right Visual -->
-      <div class="hero-visual animate-on-scroll slide-up delay-2">
-        <div class="visual-circle parallax-element" data-parallax="0.15">
-          <img
-            src="/images/haimiya-senpai.jpg"
-            alt="Julius Guevarra"
-            loading="lazy"
-          />
-        </div>
+      <div class="hero-visual animate-entrance animate-entrance-delay-2">
+        <HiganbanaThree name={name.toUpperCase()} />
       </div>
-    </div>
-  </div>
-
-  <!-- Scroll Indicator -->
-  <div class="scroll-indicator no-print" aria-hidden="true">
-    <span class="scroll-text">{t.hero.scroll}</span>
-    <div class="scroll-bounce">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-        <polyline points="6 9 12 15 18 9"></polyline>
-      </svg>
     </div>
   </div>
 </section>
+
+<style>
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse at 70% 50%, rgba(230, 57, 70, 0.08) 0%, transparent 60%);
+    pointer-events: none;
+  }
+
+  .hero-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-xl);
+    align-items: center;
+    padding-top: 4rem;
+    position: relative;
+    z-index: 1;
+  }
+
+  @media (min-width: 768px) {
+    .hero-grid {
+      grid-template-columns: 1.1fr 0.9fr;
+    }
+  }
+
+  @media (min-width: 1200px) {
+    .hero-grid {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+
+  .hero-label {
+    font-family: var(--font-mono);
+    font-size: var(--text-tiny);
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    color: var(--color-fg-muted);
+    margin-bottom: var(--space-md);
+  }
+
+  .hero-title {
+    font-size: var(--text-display);
+    font-weight: 500;
+    letter-spacing: -0.03em;
+    line-height: 1.1;
+    margin-bottom: var(--space-lg);
+  }
+
+  .hero-title-accent {
+    color: var(--color-fg-muted);
+    font-weight: 300;
+    font-style: italic;
+  }
+
+  .hero-bio {
+    font-size: var(--text-body);
+    color: var(--color-fg-muted);
+    line-height: 1.8;
+    margin-bottom: var(--space-xl);
+    max-width: 32rem;
+  }
+
+  .hero-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-sm);
+  }
+
+  .hero-visual {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 500px;
+  }
+
+  @media (min-width: 768px) {
+    .hero-visual {
+      min-height: 600px;
+    }
+  }
+
+  @media (min-width: 1200px) {
+    .hero-visual {
+      min-height: 700px;
+    }
+  }
+
+  @media (max-width: 767px) {
+    .hero-visual {
+      min-height: 400px;
+    }
+  }
+</style>

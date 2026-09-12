@@ -1,88 +1,190 @@
 ---
-import { getTranslations, type Locale } from '@/lib/i18n';
-import type { Project } from '@/lib/projects';
+import { getTranslations } from '@/lib/i18n';
 
 interface Props {
-  project: Project;
-  locale: Locale;
+  project: {
+    slug: string;
+    number: string;
+    title: string;
+    category: string;
+    cover: string;
+    images: string[];
+    metadata: {
+      platform: string;
+      category: string;
+      designer: string;
+      tools: string[];
+    };
+    description: string;
+    behanceUrl: string | null;
+    githubUrl: string | null;
+  };
 }
-const { project, locale } = Astro.props;
-const t = getTranslations(locale);
+const { project } = Astro.props;
+const t = getTranslations();
+
+const title = `${project.title} — John Doe`;
+const description = project.description;
+const canonical = `https://johndoe.com/projects/${project.slug}/`;
 ---
-<article class="container">
-  <header class="mb-12">
-    <div class="flex items-baseline gap-3 mb-4">
-      <span class="text-[var(--color-fg-subtle)] font-mono text-sm">{project.number}</span>
-      <h1 class="text-balance">{project.title}</h1>
-    </div>
-    <p class="text-[var(--color-fg-muted)] text-lg">{project.category}</p>
+<article class="project-detail">
+  <header class="project-header">
+    <span class="project-index">{project.number}</span>
+    <h1 class="project-title">{project.title}</h1>
+    <p class="project-category">{project.metadata.category}</p>
   </header>
 
-  <div class="grid lg:grid-cols-4 gap-12">
-    <div class="lg:col-span-3 space-y-12">
-      <figure class="relative aspect-[16/10] overflow-hidden rounded-[var(--radius)]">
-        <img src={project.cover} alt="" class="w-full h-full object-cover" width="1200" height="750" />
-      </figure>
+  {project.images.length > 0 && (
+    <div class="project-images">
+      {project.images.map((image, i) => (
+        <img src={image} alt={`${project.title} ${i + 1}`} loading={i === 0 ? 'eager' : 'lazy'} />
+      ))}
+    </div>
+  )}
 
-      <div class="prose prose-invert max-w-none">
-        <h3 class="text-xl font-semibold mb-4">{t.project.about}</h3>
-        <p class="text-[var(--color-fg-muted)] leading-relaxed">{project.description}</p>
-      </div>
+  <div class="project-content">
+    <section class="project-about">
+      <h2>{t.project.about}</h2>
+      <p>{project.description}</p>
+    </section>
 
-      {project.images.length > 1 && (
-        <div class="grid gap-6 md:grid-cols-2">
-          {project.images.slice(1).map((img, i) => (
-            <figure key={i} class="relative aspect-[4/3] overflow-hidden rounded-[var(--radius)]">
-              <img src={img} alt="" class="w-full h-full object-cover" width="800" height="600" />
-            </figure>
-          ))}
+    <section class="project-meta">
+      <dl>
+        <div>
+          <dt>{t.project.platform}</dt>
+          <dd>{project.metadata.platform}</dd>
         </div>
+        <div>
+          <dt>{t.project.category}</dt>
+          <dd>{project.metadata.category}</dd>
+        </div>
+        <div>
+          <dt>{t.project.designer}</dt>
+          <dd>{project.metadata.designer}</dd>
+        </div>
+        <div>
+          <dt>{t.project.tools}</dt>
+          <dd>{project.metadata.tools.join(', ')}</dd>
+        </div>
+      </dl>
+    </section>
+
+    <div class="project-links">
+      {project.behanceUrl && (
+        <a href={project.behanceUrl} target="_blank" rel="noopener noreferrer" class="btn">
+          View on Behance
+        </a>
+      )}
+      {project.githubUrl && (
+        <a href={project.githubUrl} target="_blank" rel="noopener noreferrer" class="btn btn-secondary">
+          View on GitHub
+        </a>
       )}
     </div>
-
-    <aside class="lg:col-span-1">
-      <div class="sticky top-24 space-y-8">
-        <div class="card p-6 project-meta">
-          <h4 class="font-semibold mb-6 pb-4 border-b border-[var(--color-border)]">{t.project.about}</h4>
-          <dl class="space-y-6">
-            <div class="meta-item">
-              <dt class="meta-label">{t.project.platform}</dt>
-              <dd class="meta-value">{project.metadata.platform}</dd>
-            </div>
-            <div class="meta-item">
-              <dt class="meta-label">{t.project.category}</dt>
-              <dd class="meta-value">{project.metadata.category}</dd>
-            </div>
-            <div class="meta-item">
-              <dt class="meta-label">{t.project.designer}</dt>
-              <dd class="meta-value">{project.metadata.designer}</dd>
-            </div>
-            <div class="meta-item">
-              <dt class="meta-label">{t.project.tools}</dt>
-              <dd class="meta-value">
-                <div class="meta-tags">
-                  {project.metadata.tools.map(tool => (
-                    <span key={tool} class="tag">{tool}</span>
-                  ))}
-                </div>
-              </dd>
-            </div>
-          </dl>
-        </div>
-
-        <div class="flex flex-col gap-3">
-          {project.behanceUrl && (
-            <a href={project.behanceUrl} target="_blank" rel="noopener noreferrer" class="btn w-full">
-              {t.project.viewBehance}
-            </a>
-          )}
-          {project.githubUrl && (
-            <a href={project.githubUrl} target="_blank" rel="noopener noreferrer" class="btn btn-ghost w-full">
-              View Source
-            </a>
-          )}
-        </div>
-      </div>
-    </aside>
   </div>
 </article>
+
+<style>
+  .project-detail {
+    padding: var(--space-xl) 0;
+  }
+
+  .project-header {
+    max-width: 42rem;
+    margin: 0 auto var(--space-xl);
+    text-align: center;
+  }
+
+  .project-index {
+    font-family: var(--font-mono);
+    font-size: var(--text-tiny);
+    color: var(--color-fg-subtle);
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    display: block;
+    margin-bottom: var(--space-sm);
+  }
+
+  .project-title {
+    font-size: var(--text-h1);
+    font-weight: 500;
+    letter-spacing: -0.02em;
+    line-height: 1.1;
+    margin-bottom: var(--space-xs);
+  }
+
+  .project-category {
+    font-size: var(--text-body);
+    color: var(--color-fg-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  .project-images {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-lg);
+    margin-bottom: var(--space-xl);
+  }
+
+  .project-images img {
+    width: 100%;
+    height: auto;
+    border-radius: var(--radius-md);
+  }
+
+  .project-content {
+    max-width: 42rem;
+    margin: 0 auto;
+  }
+
+  .project-about {
+    margin-bottom: var(--space-xl);
+  }
+
+  .project-about h2 {
+    font-size: var(--text-h3);
+    margin-bottom: var(--space-md);
+  }
+
+  .project-about p {
+    font-size: var(--text-body);
+    color: var(--color-fg-muted);
+    line-height: 1.8;
+  }
+
+  .project-meta {
+    margin-bottom: var(--space-xl);
+    padding: var(--space-lg);
+    background: var(--color-bg-elevated);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+  }
+
+  .project-meta dl {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: var(--space-sm) var(--space-lg);
+  }
+
+  .project-meta dt {
+    font-size: var(--text-tiny);
+    color: var(--color-fg-subtle);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    font-weight: 600;
+  }
+
+  .project-meta dd {
+    font-size: var(--text-body);
+    color: var(--color-fg);
+    margin: 0;
+  }
+
+  .project-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-sm);
+    justify-content: center;
+  }
+</style>

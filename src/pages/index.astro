@@ -14,131 +14,247 @@ const title = `${basics.name} — ${basics.label}`;
 const description = basics.summary;
 const canonical = 'https://johndoe.com/';
 ---
-<BaseLayout title={title} description={description} locale="en" canonical={canonical}>
+<BaseLayout title={title} description={description} canonical={canonical}>
   <Hero
-    locale="en"
     name={basics.name}
-    subtitle={basics.label}
+    subtitle={t.hero.subtitle}
     summary={basics.summary}
     email={basics.email}
   />
 
   <!-- About Section -->
-  <section id="about" class="section animate-on-scroll fade-in" aria-labelledby="about-title">
+  <section id="about" class="section" aria-labelledby="about-title">
     <div class="container">
-      <div style="display: grid; grid-template-columns: 1fr; gap: var(--space-lg); align-items: start;">
-        <div class="animate-on-scroll fade-in delay-1">
-          <p class="section-label">About me</p>
-          <h2 id="about-title" class="section-title">I craft digital experiences that matter.</h2>
-          <p class="section-desc">
-            A passionate UI/UX Designer and Front End Developer with a keen eye for detail
-            and a love for creating clean, user-friendly interfaces. I turn complex problems
-            into simple, beautiful solutions.
-          </p>
-        </div>
-        <div class="stats-grid">
-          <div class="stat-card animate-on-scroll scale-in delay-1">
-            <div class="stat-number">8+</div>
-            <div class="stat-label">Years Experience</div>
-          </div>
-          <div class="stat-card animate-on-scroll scale-in delay-2">
-            <div class="stat-number">50+</div>
-            <div class="stat-label">Projects Completed</div>
-          </div>
-          <div class="stat-card animate-on-scroll scale-in delay-3">
-            <div class="stat-number">30+</div>
-            <div class="stat-label">Happy Clients</div>
-          </div>
-          <div class="stat-card animate-on-scroll scale-in delay-4">
-            <div class="stat-number">15+</div>
-            <div class="stat-label">Awards Won</div>
-          </div>
-        </div>
-      </div>
+      <h2 id="about-title" class="section-title animate-entrance">
+        {t.about.title}
+      </h2>
+      <p class="about-desc animate-entrance animate-entrance-delay-1">
+        {t.about.description}
+      </p>
     </div>
   </section>
 
-  <!-- Skills Section -->
-  <section class="section animate-on-scroll fade-in" style="background: var(--color-bg-elevated);" aria-labelledby="skills-title">
+  <!-- Works Section -->
+  <section id="works" class="section" aria-labelledby="works-title">
     <div class="container">
-      <header class="section-header">
-        <p class="section-label animate-on-scroll fade-in delay-1">What I Do</p>
-        <h2 id="skills-title" class="section-title animate-on-scroll fade-in delay-2">Skills & Expertise</h2>
-      </header>
-      <div class="skills-list">
-        <span class="skill-pill animate-on-scroll scale-in delay-1">UI/UX Design</span>
-        <span class="skill-pill animate-on-scroll scale-in delay-2">React</span>
-        <span class="skill-pill animate-on-scroll scale-in delay-3">TypeScript</span>
-        <span class="skill-pill animate-on-scroll scale-in delay-4">Next.js</span>
-        <span class="skill-pill animate-on-scroll scale-in delay-5">Figma</span>
-        <span class="skill-pill animate-on-scroll scale-in delay-6">Tailwind CSS</span>
-        <span class="skill-pill animate-on-scroll scale-in delay-7">Node.js</span>
-        <span class="skill-pill animate-on-scroll scale-in delay-8">Astro</span>
-        <span class="skill-pill animate-on-scroll scale-in delay-9">Motion Design</span>
-        <span class="skill-pill animate-on-scroll scale-in delay-10">Responsive Design</span>
+      <div class="section-header">
+        <p class="section-label animate-entrance">Selected Work</p>
+        <h2 id="works-title" class="section-title animate-entrance animate-entrance-delay-1">
+          {t.works.title}
+        </h2>
+        <p class="section-desc animate-entrance animate-entrance-delay-2">
+          {t.works.description}
+        </p>
       </div>
-    </div>
-  </section>
-
-  <!-- Works/Projects Section -->
-  <section id="works" class="section animate-on-scroll fade-in" aria-labelledby="works-title">
-    <div class="container">
-      <header class="section-header">
-        <p class="section-label animate-on-scroll fade-in delay-1">Selected Works</p>
-        <h2 id="works-title" class="section-title animate-on-scroll fade-in delay-2">Recent Projects</h2>
-      </header>
-      <div class="projects-list">
-        {featuredProjects.map((project, index) => (
-          <a
-            href={`/projects/${project.slug}`}
-            class="project-row animate-on-scroll slide-up"
-            style="--delay: {index * 0.05}s; transition-delay: var(--delay);"
-          >
-            <div class="project-info">
-              <span class="project-index">{String(index + 1).padStart(2, '0')}</span>
-              <div class="project-meta">
-                <h3 class="project-title">{project.title}</h3>
-                <p class="project-category">{project.category}</p>
+      <div class="projects-grid">
+        {featuredProjects.map((project, i) => (
+          <article class={`project-card animate-entrance animate-entrance-delay-${Math.min(i + 2, 5)}`}>
+            <a href={`/projects/${project.slug}`} class="project-card-link">
+              <div class="project-card-header">
+                <span class="project-index">{project.number}</span>
+                <span class="project-category">{project.metadata.category}</span>
               </div>
-            </div>
-            <svg class="project-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M5 12h14"></path>
-              <path d="m12 5 7 7-7 7"></path>
-            </svg>
-          </a>
+              <h3 class="project-title">{project.title}</h3>
+              <div class="project-card-footer">
+                <span class="project-platform">{project.metadata.platform}</span>
+                <svg class="project-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <path d="M5 12h14"></path>
+                  <path d="m12 5 7 7-7 7"></path>
+                </svg>
+              </div>
+            </a>
+          </article>
         ))}
       </div>
     </div>
   </section>
 
   <!-- Contact Section -->
-  <section id="contact" class="section animate-on-scroll fade-in" style="background: var(--color-bg-elevated);" aria-labelledby="contact-title">
+  <section id="contact" class="section" aria-labelledby="contact-title">
     <div class="container">
       <div class="contact-content">
-        <p class="section-label animate-on-scroll fade-in delay-1">Get in touch</p>
-        <h2 id="contact-title" class="section-title animate-on-scroll fade-in delay-2">Let's work together.</h2>
-        <p class="section-desc animate-on-scroll fade-in delay-3">
+        <h2 id="contact-title" class="contact-title animate-entrance">
+          Let's work together.
+        </h2>
+        <p class="contact-desc animate-entrance animate-entrance-delay-1">
           I'm currently available for freelance work. Whether you have a project in mind
           or just want to say hello, I'd love to hear from you.
         </p>
-        <div class="contact-actions animate-on-scroll fade-in delay-4">
-          <a href={`mailto:${basics.email}`} class="btn btn-primary">
-            Say Hello
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M5 12h14"></path>
-              <path d="m12 5 7 7-7 7"></path>
-            </svg>
-          </a>
-          <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" class="btn btn-secondary">
-            LinkedIn
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
-              <rect x="2" y="9" width="4" height="12"></rect>
-              <circle cx="4" cy="4" r="2"></circle>
-            </svg>
-          </a>
-        </div>
+        <a href={`mailto:${basics.email}`} class="btn animate-entrance animate-entrance-delay-2">
+          Say Hello
+        </a>
       </div>
     </div>
   </section>
 </BaseLayout>
+
+<style>
+  .section {
+    padding: clamp(4rem, 10vw, 8rem) 0;
+  }
+
+  .section-header {
+    text-align: center;
+    max-width: 36rem;
+    margin: 0 auto var(--space-xl);
+  }
+
+  .section-title {
+    font-family: var(--font-display);
+    font-size: var(--text-h2);
+    font-weight: 500;
+    letter-spacing: 0.02em;
+    line-height: 1.2;
+    color: var(--color-fg);
+    margin-bottom: var(--space-md);
+  }
+
+  .section-label {
+    font-size: var(--text-tiny);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: var(--color-fg-subtle);
+    margin-bottom: var(--space-xs);
+    display: block;
+  }
+
+  .section-desc {
+    font-size: var(--text-body);
+    color: var(--color-fg-muted);
+    line-height: 1.7;
+  }
+
+  .about-desc {
+    font-size: var(--text-body);
+    color: var(--color-fg-muted);
+    line-height: 1.9;
+    border-left: 1px solid var(--color-border);
+    padding-left: var(--space-md);
+    margin-top: var(--space-md);
+    max-width: 42rem;
+  }
+
+  /* Project Cards Grid */
+  .projects-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-md);
+  }
+
+  @media (min-width: 640px) {
+    .projects-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .projects-grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+
+  .project-card {
+    background: var(--color-bg-elevated);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    padding: var(--space-lg);
+    transition: border-color var(--transition-base), transform var(--transition-base), box-shadow var(--transition-base);
+  }
+
+  .project-card:hover {
+    border-color: var(--color-border-hover);
+    transform: translateY(-4px);
+    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.2);
+  }
+
+  .project-card-link {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    text-decoration: none;
+    color: inherit;
+  }
+
+  .project-card-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: var(--space-sm);
+  }
+
+  .project-index {
+    font-family: var(--font-mono);
+    font-size: var(--text-tiny);
+    color: var(--color-fg-subtle);
+  }
+
+  .project-category {
+    font-size: var(--text-tiny);
+    color: var(--color-fg-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    background: var(--color-bg-hover);
+    padding: 0.25rem 0.75rem;
+    border-radius: var(--radius-full);
+  }
+
+  .project-title {
+    font-size: var(--text-h4);
+    font-weight: 500;
+    line-height: 1.3;
+    margin-bottom: var(--space-lg);
+    flex-grow: 1;
+  }
+
+  .project-card-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: auto;
+  }
+
+  .project-platform {
+    font-family: var(--font-mono);
+    font-size: var(--text-tiny);
+    color: var(--color-fg-subtle);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  .project-arrow {
+    width: 20px;
+    height: 20px;
+    color: var(--color-fg-subtle);
+    transition: transform var(--transition-fast), color var(--transition-fast);
+    flex-shrink: 0;
+  }
+
+  .project-card:hover .project-arrow {
+    transform: translateX(4px);
+    color: var(--color-fg);
+  }
+
+  .contact-content {
+    text-align: center;
+    max-width: 36rem;
+    margin: 0 auto;
+  }
+
+  .contact-title {
+    font-family: var(--font-display);
+    font-size: clamp(2.5rem, 6vw, 4.5rem);
+    font-weight: 500;
+    letter-spacing: 0.02em;
+    line-height: 1.15;
+    color: var(--color-fg);
+    margin-bottom: var(--space-md);
+  }
+
+  .contact-desc {
+    font-size: var(--text-body);
+    color: var(--color-fg-muted);
+    line-height: 1.9;
+    margin-bottom: var(--space-lg);
+  }
+</style>
